@@ -1,0 +1,7 @@
+# opencode-zen-compat bundle patch: register itself as one Loader row.
+# Applying this bundle inserts the plugin; removing the dependency (dsh plugin
+# remove opencode-zen-compat) reconciles this layer away.
+
+- insert:
+    - id: opencode-zen-compat
+      name: opencode-zen-compat
