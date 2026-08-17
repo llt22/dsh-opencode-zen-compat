@@ -1,5 +1,6 @@
 // Self-contained smoke test for opencode-zen-compat. No DSH runtime needed.
 // Run: node test/smoke.mjs
+import fs from "node:fs";
 import { apply } from "../lib/index.js";
 
 let failures = 0;
@@ -79,6 +80,12 @@ let h2; badCtx.on = (n, f) => { h2 = f; };
 apply(badCtx);
 const out5 = await collect(h2({ provider: "opencode-go" }, () => errorPathStream()));
 check("settings throw tolerated, id match works", out5.at(-1).reason.kind === "stop");
+
+const patch = fs.readFileSync(new URL("../cordis.patch.yml", import.meta.url), "utf8");
+const modelCount = (patch.match(/^        - id: /gm) || []).length;
+const effortCount = (patch.match(/^          reasoningEfforts:/gm) || []).length;
+check("all 18 Plus models declare reasoning efforts", modelCount === 18 && effortCount === 18);
+check("GPT-5.6 Luna exposes extended efforts", /gpt-5\.6-luna[\s\S]*?reasoningEfforts: \{ low: low, medium: medium, high: high, xhigh: xhigh, max: max \}/.test(patch));
 
 if (failures > 0) {
 	console.error(failures + " test(s) FAILED");

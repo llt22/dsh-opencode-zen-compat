@@ -14,7 +14,7 @@ DSH(DeepSeek Harness)插件:修复 opencode Zen 网关流式响应的**非标准
 > 不需要克隆仓库、不需要源码目录、不需要自己打包。下面的命令直接从 GitHub Release 下载已打包插件。
 
 ```bash
-dsh plugin --profile desktop add https://github.com/llt22/dsh-opencode-zen-compat/releases/download/v1.1.0/opencode-zen-compat-1.1.0.tgz
+dsh plugin --profile desktop add https://github.com/llt22/dsh-opencode-zen-compat/releases/download/v1.1.1/opencode-zen-compat-1.1.1.tgz
 ```
 
 安装完成后**重启 DSH Desktop**即可生效。升级时重复执行同一条命令即可。
@@ -23,7 +23,7 @@ dsh plugin --profile desktop add https://github.com/llt22/dsh-opencode-zen-compa
 
 ```bash
 '/Applications/DSH Desktop.app/Contents/Resources/app.asar.unpacked/lib/desktop-cli.js' \
-  plugin --profile desktop add https://github.com/llt22/dsh-opencode-zen-compat/releases/download/v1.1.0/opencode-zen-compat-1.1.0.tgz
+  plugin --profile desktop add https://github.com/llt22/dsh-opencode-zen-compat/releases/download/v1.1.1/opencode-zen-compat-1.1.1.tgz
 ```
 
 ## 功能
@@ -100,7 +100,7 @@ dsh plugin --profile desktop remove opencode-zen-compat
 git clone https://github.com/llt22/dsh-opencode-zen-compat.git
 cd dsh-opencode-zen-compat
 pnpm pack
-dsh plugin --profile desktop add ./opencode-zen-compat-1.1.0.tgz
+dsh plugin --profile desktop add ./opencode-zen-compat-1.1.1.tgz
 ```
 
 目录结构:
