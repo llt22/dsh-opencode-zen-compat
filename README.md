@@ -14,7 +14,7 @@ DSH(DeepSeek Harness)插件:修复 opencode Zen 网关流式响应的**非标准
 > 不需要克隆仓库、不需要源码目录、不需要自己打包。下面的命令直接从 GitHub Release 下载已打包插件。
 
 ```bash
-dsh plugin --profile desktop add https://github.com/llt22/dsh-opencode-zen-compat/releases/download/v1.0.0/opencode-zen-compat-1.0.0.tgz
+dsh plugin --profile desktop add https://github.com/llt22/dsh-opencode-zen-compat/releases/download/v1.1.0/opencode-zen-compat-1.1.0.tgz
 ```
 
 安装完成后**重启 DSH Desktop**即可生效。升级时重复执行同一条命令即可。
@@ -23,8 +23,29 @@ dsh plugin --profile desktop add https://github.com/llt22/dsh-opencode-zen-compa
 
 ```bash
 '/Applications/DSH Desktop.app/Contents/Resources/app.asar.unpacked/lib/desktop-cli.js' \
-  plugin --profile desktop add https://github.com/llt22/dsh-opencode-zen-compat/releases/download/v1.0.0/opencode-zen-compat-1.0.0.tgz
+  plugin --profile desktop add https://github.com/llt22/dsh-opencode-zen-compat/releases/download/v1.1.0/opencode-zen-compat-1.1.0.tgz
 ```
+
+## 功能
+
+### 1. 流式兼容（v1.0.0）
+
+容忍 opencode Zen 网关的非标准流式结束标志（缺失 `finish_reason` / `[DONE]`），修复断响应。
+
+### 2. 自定义供应商 opencode-go-plus（v1.1.0）
+
+pi-ai 内置目录只有 16 个 opencode-go 模型，本插件通过 cordis patch 向 llm-pi-ai 的 **base 配置层**注入完整自定义供应商：
+
+- **18 个模型**（含 pi-ai 内置表缺失的 `gpt-5.6-luna` / `glm-5.3` / `qwen3.8-max`）
+- 复用 `OPENCODE_GO_API_KEY` 凭据（与 opencode-go 路由同一把 key）
+- 走 `openai-completions` 协议（/v1/chat/completions，全部实测可用）
+- 不写用户 settings.yaml；卸载插件即移除 provider，零残留
+
+> 说明：`grok-4.5` 不在列表（只支持 responses 协议，chat/completions 不可用），用内置 opencode-go 路由即可。
+
+### 何时可以卸载本插件
+
+如果上游 pi-ai / DSH 官方修复了 Zen 网关流式结束标志并补齐模型目录，`dsh plugin remove opencode-zen-compat` 整体移除即可，无残留。
 
 ## 背景
 
@@ -79,7 +100,7 @@ dsh plugin --profile desktop remove opencode-zen-compat
 git clone https://github.com/llt22/dsh-opencode-zen-compat.git
 cd dsh-opencode-zen-compat
 pnpm pack
-dsh plugin --profile desktop add ./opencode-zen-compat-1.0.0.tgz
+dsh plugin --profile desktop add ./opencode-zen-compat-1.1.0.tgz
 ```
 
 目录结构:

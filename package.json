@@ -1,7 +1,7 @@
 {
   "name": "opencode-zen-compat",
-  "version": "1.0.0",
-  "description": "DSH plugin: tolerate opencode Zen's non-standard stream terminator (missing finish_reason / [DONE]) so opencode.ai endpoints stop dropping completed responses",
+  "version": "1.1.0",
+  "description": "DSH plugin: opencode Zen 网关一体化适配 —— ①容忍非标准流式结束标志(缺失 finish_reason/[DONE])修复断响应 ②注册完整自定义供应商 opencode-go-plus(18 模型, 含 gpt-5.6-luna/glm-5.3/qwen3.8-max)。官方修复后可整体移除。",
   "author": "llt",
   "type": "module",
   "main": "lib/index.js",
@@ -31,7 +31,10 @@
     "dsh",
     "plugin",
     "opencode",
-    "llm"
+    "llm",
+    "zen",
+    "compat",
+    "models"
   ],
   "dsh": {
     "bundle": {
