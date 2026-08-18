@@ -14,17 +14,12 @@ DSH(DeepSeek Harness)插件:修复 opencode Zen 网关流式响应的**非标准
 > 不需要克隆仓库、不需要源码目录、不需要自己打包。下面的命令直接从 GitHub Release 下载已打包插件。
 
 ```bash
-dsh plugin --profile desktop add https://github.com/llt22/dsh-opencode-zen-compat/releases/download/v1.1.1/opencode-zen-compat-1.1.1.tgz
+dsh plugin --profile web add https://github.com/llt22/dsh-opencode-zen-compat/releases/download/v1.1.1/opencode-zen-compat-1.1.1.tgz
 ```
 
-安装完成后**重启 DSH Desktop**即可生效。升级时重复执行同一条命令即可。
+安装完成后**重启 DSH Web**即可生效。升级时重复执行同一条命令即可。
 
-如果你的 DSH CLI 没有加入 PATH,可以使用 DSH Desktop 自带的 CLI 入口:
-
-```bash
-'/Applications/DSH Desktop.app/Contents/Resources/app.asar.unpacked/lib/desktop-cli.js' \
-  plugin --profile desktop add https://github.com/llt22/dsh-opencode-zen-compat/releases/download/v1.1.1/opencode-zen-compat-1.1.1.tgz
-```
+如果你的 DSH CLI 没有加入 PATH,可以使用 DSH Web 同款的 CLI 入口(路径以实际安装为准)执行同一条 `dsh plugin --profile web add ...` 命令。
 
 ## 功能
 
@@ -87,10 +82,10 @@ DSH 底层 LLM 库 pi-ai 的 openai-completions 适配器在流结束后发现�
 ## 卸载
 
 ```bash
-dsh plugin --profile desktop remove opencode-zen-compat
+dsh plugin --profile web remove opencode-zen-compat
 ```
 
-卸载后重启 DSH Desktop。
+卸载后重启 DSH Web。
 
 ## 源码开发
 
@@ -100,7 +95,7 @@ dsh plugin --profile desktop remove opencode-zen-compat
 git clone https://github.com/llt22/dsh-opencode-zen-compat.git
 cd dsh-opencode-zen-compat
 pnpm pack
-dsh plugin --profile desktop add ./opencode-zen-compat-1.1.1.tgz
+dsh plugin --profile web add ./opencode-zen-compat-1.1.1.tgz
 ```
 
 目录结构:
